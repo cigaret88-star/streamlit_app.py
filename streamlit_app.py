@@ -39,15 +39,16 @@ if not st.session_state.game_started:
     target_r = st.number_input("목표 회차 설정", min_value=1, value=20)
     
     st.write("### 참여 인원 및 이름 입력")
-    num_players = st.slider("참여 인원", min_value=2, max_value=6, value=4)
+    # 인원수를 선택하면 그만큼 입력창이 생깁니다.
+    num_players = st.slider("참여 인원", min_value=2, max_value=4, value=4)
     
-    colors = {"파랑": "#3498db", "빨강": "#e74c3c", "초록": "#2ecc71", "노랑": "#f1c40f", "보라": "#9b59b6", "주황": "#e67e22"}
+    # 색상을 다시 4가지로 고정했습니다.
+    colors = {"파랑": "#3498db", "빨강": "#e74c3c", "초록": "#2ecc71", "노랑": "#f1c40f"}
     selected_info = []
     
     for i in range(num_players):
         c1, c2 = st.columns([2, 1])
         with c1:
-            # 직접 이름을 입력받는 부분입니다.
             u_name = st.text_input(f"참여자 {i+1} 이름", value=f"플레이어 {i+1}", key=f"name_{i}")
         with c2:
             u_color = st.selectbox(f"색상 {i+1}", list(colors.keys()), index=i % len(colors), key=f"color_{i}")
